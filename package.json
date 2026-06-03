@@ -16,7 +16,11 @@
 		"format": "biome format --write ."
 	},
 	"lint-staged": {
-		"*.{js,ts,jsx,tsx}": "biome check --write --no-errors-on-unmatched"
+		"*.{js,ts,jsx,tsx}": "biome check --write --no-errors-on-unmatched",
+		"*.{rs}": [
+			"rustfmt --edition 2021",
+			"cargo clippy --fix --allow-dirty --allow-staged --"
+		]
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.4.16",
