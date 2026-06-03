@@ -1,0 +1,9 @@
+{
+	"name": "rust",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"build": "wasm-pack build --target web --out-dir ../web/src/wasm",
+		"validate": "cargo check"
+	}
+}
