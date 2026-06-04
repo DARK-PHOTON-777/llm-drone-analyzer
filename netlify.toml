@@ -1,0 +1,23 @@
+[build]
+	command = "npm run build"
+	publish = "web/dist"
+
+[build.environment]
+	RUST_VERSION = "stable"
+
+[dev]
+	framework = "#custom"
+	command = "npm run dev"
+	targetPort = 5173
+	port = 8888
+
+[functions]
+	directory = "netlify/functions"
+	node_bundler = "esbuild"
+[functions.query]
+	external_node_modules = ["@openrouter/agent"]
+
+[[redirects]]
+	from = "/api/*"
+	to = "/.netlify/functions/:splat"
+	status = 200
