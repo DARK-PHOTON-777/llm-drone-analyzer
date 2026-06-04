@@ -4,22 +4,28 @@
 	"private": true,
 	"type": "module",
 	"workspaces": [
-		"api/*"
+		"web",
+		"api",
+		"rust"
 	],
 	"scripts": {
 		"prepare": "husky",
+		
 		"precommit": "lint-staged",
 		"prepush": "npm run validate",
-		"build": "npm run build --prefix rust && npm run build --prefix web",
-		"dev": "npm run build --prefix rust && npm run dev --prefix web",
-		"validate": "biome check . && npm run validate --workspaces --if-present",
-		"format": "biome format --write ."
+		
+		"validate": "npm run validate --workspaces --if-present",
+		
+		"format": "npm run format --workspaces --if-present && biome format --write .",
+		
+		"build": "npm run build --workspaces --if-present",
+		"dev": "nnpm run dev --workspaces --if-present"
 	},
 	"lint-staged": {
 		"*.{js,ts,jsx,tsx}": "biome check --write --no-errors-on-unmatched",
-		"*.{rs}": [
-			"rustfmt --edition 2021",
-			"cargo clippy --fix --allow-dirty --allow-staged --"
+		"*.rs": [
+			"cargo fmt --manifest-path rust/Cargo.toml --",
+			"sh -c 'cargo clippy --manifest-path rust/Cargo.toml --fix --allow-dirty --allow-staged' --"
 		]
 	},
 	"devDependencies": {

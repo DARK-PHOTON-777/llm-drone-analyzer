@@ -3,7 +3,11 @@
 	"version": "1.0.0",
 	"private": true,
 	"scripts": {
-		"build": "wasm-pack build --target web --out-dir ../web/src/wasm",
-		"validate": "cargo check"
+		"format": "cargo fmt --manifest-path Cargo.toml --",
+		
+		"validate": "cargo clippy --manifest-path Cargo.toml && cargo test --manifest-path Cargo.toml",
+		
+		"build": "wasm-pack build --release --target web --out-dir ../web/src/wasm",
+		"dev": "wasm-pack build --target web --out-dir ../web/src/wasm"
 	}
 }
