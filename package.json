@@ -4,9 +4,9 @@
 	"private": true,
 	"type": "module",
 	"workspaces": [
+		"rust",
 		"web",
-		"api",
-		"rust"
+		"api"
 	],
 	"scripts": {
 		"prepare": "husky",
@@ -19,7 +19,7 @@
 		"format": "npm run format --workspaces --if-present && biome format --write .",
 		
 		"build": "npm run build --workspaces --if-present",
-		"dev": "nnpm run dev --workspaces --if-present"
+		"dev": "npm run dev --workspaces --if-present"
 	},
 	"lint-staged": {
 		"*.{js,ts,jsx,tsx}": "biome check --write --no-errors-on-unmatched",
