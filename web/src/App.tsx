@@ -1,4 +1,4 @@
-import { Anchor, AppShell, Divider, Flex, Title } from "@mantine/core";
+import { Anchor, AppShell, Divider, Flex, Text, Title } from "@mantine/core";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useRef, useState } from "react";
 import { FaGithub } from "react-icons/fa";
@@ -164,6 +164,16 @@ export const App = () => {
 						</Anchor>
 					</Flex>
 				</Flex>
+				<Divider />
+				<Text m="sm">
+					This web application analyzes custom drone configurations
+					against a user's performance goals by running Monte Carlo
+					simulations. By factoring in physical component variances,
+					it generates performance distributions displayed as
+					intuitive histograms. Users receive clear, physics-backed
+					hardware recommendations to optimize their build for
+					specific flight objectives.
+				</Text>
 				<Divider mb="md" />
 				<Flex gap="md" direction={{ base: "column", lg: "row" }}>
 					<Form
