@@ -1,0 +1,39 @@
+{
+	"name": "llm-drone-analyzer",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"workspaces": [
+		"rust",
+		"web",
+		"api"
+	],
+	"scripts": {
+		"prepare": "husky",
+		"precommit": "lint-staged",
+		"prepush": "npm run validate",
+		"validate": "npm run validate --workspaces --if-present",
+		"format": "npm run format --workspaces --if-present && biome format --write .",
+		"build": "npm run build --workspaces --if-present",
+		"dev": "npm run dev --workspaces --if-present"
+	},
+	"lint-staged": {
+		"*.{js,ts,jsx,tsx}": "biome check --write --no-errors-on-unmatched",
+		"*.rs": [
+			"cargo fmt --manifest-path rust/Cargo.toml --",
+			"sh -c 'cargo clippy --manifest-path rust/Cargo.toml --fix --allow-dirty --allow-staged' --"
+		]
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.4.16",
+		"husky": "^9.1.7",
+		"lint-staged": "^17.0.7",
+		"rollup-plugin-visualizer": "^7.0.1"
+	},
+	"dependencies": {
+		"@netlify/functions": "^5.3.0",
+		"@openrouter/agent": "^0.7.0",
+		"@types/node": "^25.9.1",
+		"pino": "^10.3.1"
+	}
+}
