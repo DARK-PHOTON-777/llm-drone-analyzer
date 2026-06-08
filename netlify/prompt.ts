@@ -45,7 +45,6 @@ Respond in markdown. DO NOT USE TABLES OR EQUATIONS`;
 ### SYSTEM SIMULATION DISTRIBUTIONS (Mean, StdDev, 5th%, 95th%)
 - **Step Response**:
   - Rise Time: Mean=${distribution.step.rise_time} min, P5=${distribution.step.rise_time.p5}, P95=${distribution.step.rise_time.p95}
-  - Overshoot: Mean=${distribution.step.overshoot.mean} %, P5=${distribution.step.overshoot.p5}, P95=${distribution.step.overshoot.p95}
 - **Efficiency & Flight**:
   - Flight Time: Mean=${distribution.efficiency.flight_time.mean} min, P5=${distribution.efficiency.flight_time.p5}, P95=${distribution.efficiency.flight_time.p95}
   - Hover Throttle: Mean=${distribution.efficiency.hover_throttle.mean} %, P5=${distribution.efficiency.hover_throttle.p5}, P95=${distribution.efficiency.hover_throttle.p95}

@@ -6,7 +6,6 @@ export const createStepSchema = <T extends z.ZodTypeAny>(
 ): z.ZodType<rust.Step<z.infer<T>>> => {
 	return z.object({
 		rise_time: inner,
-		overshoot: inner,
 	}) as unknown as z.ZodType<rust.Step<z.infer<T>>>;
 };
 

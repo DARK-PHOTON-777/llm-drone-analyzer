@@ -129,7 +129,7 @@ fn iteration(mut accumulator: Results<Vec<f64>>, params: &Parameters) -> Results
 		omega
 	};
 
-	let (rise_time, overshoot) = {
+	let rise_time = {
 		let thrust_steady_state = coefficient_thrust
 			* RHO * (omega_steady_state / (2.0 * std::f64::consts::PI))
 			.powi(2) * diameter_prop.powi(4); // N
@@ -169,12 +169,11 @@ fn iteration(mut accumulator: Results<Vec<f64>>, params: &Parameters) -> Results
 				found = true;
 			}
 		}
-		let os = (((max_omega - omega_steady_state) / omega_steady_state) * 100.0).max(0.0); // %
-		(r_time, os)
+
+		r_time
 	}; // s, %
 
 	accumulator.step.rise_time.push(rise_time);
-	accumulator.step.overshoot.push(overshoot);
 
 	//Simulation Endurance
 	let (flight_time, hover_throttle, specific_thrust) = {

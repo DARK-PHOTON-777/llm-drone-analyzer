@@ -116,17 +116,11 @@ export const Results = memo(
 
 				<Stack>
 					<Fieldset legend="Step Response">
-						<SimpleGrid cols={{ base: 1, sm: 2 }} spacing="xl">
+						<SimpleGrid cols={{ base: 1 }} spacing="xl">
 							<ChartBox
 								section="step"
 								field="rise_time"
 								label="Rise Time (s)"
-								simulation={simulation}
-							/>
-							<ChartBox
-								section="step"
-								field="overshoot"
-								label="Overshoot (%)"
 								simulation={simulation}
 							/>
 						</SimpleGrid>

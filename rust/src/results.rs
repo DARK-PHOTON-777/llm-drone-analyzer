@@ -6,7 +6,6 @@ use tsify::Tsify;
 #[derive(Debug, Serialize, Clone, Tsify)]
 pub struct Step<T> {
 	pub rise_time: T, // s
-	pub overshoot: T, // %
 }
 
 #[derive(Debug, Serialize, Clone, Tsify)]
@@ -34,7 +33,6 @@ impl From<&mut Step<Vec<f64>>> for Step<Distribution> {
 	fn from(sub_struct: &mut Step<Vec<f64>>) -> Self {
 		Step {
 			rise_time: Distribution::from_samples(&mut sub_struct.rise_time),
-			overshoot: Distribution::from_samples(&mut sub_struct.overshoot),
 		}
 	}
 }
@@ -81,7 +79,6 @@ impl From<&Step<Vec<f64>>> for Step<Histogram> {
 		let _b = 12; // Target 12 functional distribution subdivisions 
 		Step {
 			rise_time: Histogram::from_sorted_samples(&sub.rise_time),
-			overshoot: Histogram::from_sorted_samples(&sub.overshoot),
 		}
 	}
 }
@@ -133,7 +130,6 @@ impl<T: WithCapacity> WithCapacity for Step<T> {
 	fn with_capacity(capacity: usize) -> Self {
 		Self {
 			rise_time: T::with_capacity(capacity),
-			overshoot: T::with_capacity(capacity),
 		}
 	}
 }
