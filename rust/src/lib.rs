@@ -58,7 +58,7 @@ fn iteration(mut accumulator: Results<Vec<f64>>, params: &Parameters) -> Results
 	let integrator = RK4;
 
 	// Structural Parameters
-	let mass = params.structural.mass.sample(); // kg
+	let mass = params.structural.mass.sample().max(0.001); // kg
 	let n_motors = params.structural.num_motors as f64;
 
 	// Motor Parameters
