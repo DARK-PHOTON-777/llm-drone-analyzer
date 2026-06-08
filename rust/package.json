@@ -4,10 +4,9 @@
 	"private": true,
 	"scripts": {
 		"format": "cargo fmt --manifest-path Cargo.toml --",
-		
 		"validate": "cargo clippy --manifest-path Cargo.toml && cargo test --manifest-path Cargo.toml",
-		
-		"build": "wasm-pack build --release --target web --out-dir ../web/src/wasm",
-		"dev": "wasm-pack build --target web --out-dir ../web/src/wasm"
+		"prebuild": "command -v wasm-pack >/dev/null 2>&1 || (curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh)",
+		"build": "npm run prebuild && wasm-pack build --release --target web --out-dir ../web/src/wasm",
+		"dev": "npm run prebuild && wasm-pack build --target web --out-dir ../web/src/wasm"
 	}
 }
