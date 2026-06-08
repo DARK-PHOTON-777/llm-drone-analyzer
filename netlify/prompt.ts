@@ -58,7 +58,9 @@ Respond in markdown. DO NOT USE TABLES OR EQUATIONS`;
 ${assessment.violations.length === 0 ? "- No critical physics/current violations." : assessment.violations.map((v) => `- VIOLATION: ${v.message} (${v.details})`).join("\n")}
 ${assessment.warnings.length === 0 ? "- No operational warnings." : assessment.warnings.map((w) => `- WARNING: ${w.message} (${w.details})`).join("\n")}
 
-Please provide your technical recommendations, suggestions for component modifications, and an engineering summary below.`;
+Please provide your technical recommendations, suggestions for component modifications, and an engineering summary below.
+
+Respoond in about 500 words.`;
 
 	return {
 		user,
