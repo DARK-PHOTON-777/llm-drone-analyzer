@@ -150,14 +150,14 @@ export const DEFAULT_FORM_VALUES: Form = {
 			max_current: 40,
 		},
 		prop: {
-			diameter: { nominal: 5, variance: 1 },
-			pitch: { nominal: 4, variance: 1 },
+			diameter: { nominal: 5, variance: 0.1 },
+			pitch: { nominal: 4, variance: 0.1 },
 			blades: "3",
 			material: "Polycarbonate",
 		},
 	},
 	structural: {
-		mass: { nominal: 600, variance: 10 },
+		mass: { nominal: 600, variance: 2.5 },
 		num_motors: "4",
 		frame_size: "5",
 		type: "Racing",
