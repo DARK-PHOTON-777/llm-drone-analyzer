@@ -28,7 +28,9 @@ const OPTIONS: ChartOptions<"bar"> = {
 	animation: false,
 	responsive: true,
 	maintainAspectRatio: false,
-	plugins: { legend: { display: false } },
+	plugins: {
+		legend: { display: false },
+	},
 	scales: {
 		x: {
 			ticks: { maxTicksLimit: 6, font: { size: 16 } },
@@ -92,8 +94,8 @@ const ChartBox = <
 	}, [histogram, section]);
 
 	return (
-		<Box h={220} w="100%">
-			<Text size="xs" c="dimmed" mb={4}>
+		<Box h={220} w="100%" pb="lg">
+			<Text size="lg" mb={4}>
 				{label}
 			</Text>
 			<Bar
