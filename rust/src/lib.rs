@@ -85,7 +85,7 @@ fn iteration(mut accumulator: Results<Vec<f64>>, params: &Parameters) -> Results
 		_ => 1.0,
 	};
 
-	let coefficient_thrust = 0.11 * blades_factor * (pitch_prop / diameter_prop);
+	let coefficient_thrust = (0.11 * blades_factor * (pitch_prop / diameter_prop)).max(1e-6);
 	let coefficient_torque = coefficient_thrust / (2.0 * std::f64::consts::PI);
 
 	let rho_prop = match params.propulsion.prop.material {
@@ -114,7 +114,8 @@ fn iteration(mut accumulator: Results<Vec<f64>>, params: &Parameters) -> Results
 		for _ in 0..30 {
 			let mid = (low + high) / 2.0;
 			let current_motor = ((voltage_batt - mid / kv) / r_total).max(0.0);
-			let torque_motor = (current_motor - params.propulsion.motor.idle_current) * kt;
+			let torque_motor =
+				((current_motor - params.propulsion.motor.idle_current) * kt).max(0.0);
 			let torque_prop = coefficient_torque
 				* RHO * (mid / (2.0 * std::f64::consts::PI)).powi(2)
 				* diameter_prop.powi(5);
@@ -189,8 +190,9 @@ fn iteration(mut accumulator: Results<Vec<f64>>, params: &Parameters) -> Results
 		let current_hover = (torque_hover / kt) + params.propulsion.motor.idle_current; // A
 		let current_total_hover = current_hover * n_motors; // A
 
-		if omega_hover.is_nan()
-			|| current_total_hover > params.electrical.battery.c_rating * (total_capacity / 3600.0)
+		if omega_steady_state.is_nan()
+			|| omega_steady_state.is_infinite()
+			|| omega_steady_state > voltage_batt * kv
 		{
 			(0.0, 100.0, 0.0)
 		} else {

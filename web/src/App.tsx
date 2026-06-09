@@ -155,7 +155,7 @@ export const App = () => {
 							<FaGithub size={32} />
 						</Anchor>
 						<Anchor
-							href="https://reno-warner.github.io/portfolio/"
+							href="https://dark-photon-777.github.io/portfolio/"
 							target="_blank"
 							rel="noopener noreferrer"
 							c="inherit"
