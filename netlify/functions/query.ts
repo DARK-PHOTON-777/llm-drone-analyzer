@@ -50,11 +50,32 @@ export default async (req: Request, _context: Context) => {
 			},
 		);
 
-		if (!res.ok || !res.body) {
-			logger.error(res.status, `OpenRouter error`);
+		if (!res.ok) {
+			const errorText = await res
+				.text()
+				.catch(() => "Unknown error body");
+			return new Response(
+				JSON.stringify({
+					error: `OpenRouter rejected request with status ${res.status}`,
+					details: errorText,
+				}),
+				{
+					status: res.status,
+					headers: { "Content-Type": "application/json" },
+				},
+			);
 		}
 
-		// Parse SSE stream, forward only the text deltas
+		if (!res.body) {
+			return new Response(
+				JSON.stringify({ error: "OpenRouter response body is null" }),
+				{
+					status: 500,
+					headers: { "Content-Type": "application/json" },
+				},
+			);
+		}
+
 		const textStream = new ReadableStream({
 			async start(controller) {
 				const reader = res.body!.getReader();
