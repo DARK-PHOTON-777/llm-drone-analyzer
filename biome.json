@@ -20,5 +20,14 @@
 			"quoteStyle": "double",
 			"jsxQuoteStyle": "double"
 		}
+	},
+	"html": {
+		"experimentalFullSupportEnabled": true,
+		"formatter": {
+			"enabled": true,
+			"indentStyle": "tab",
+			"indentWidth": 4,
+			"bracketSameLine": true
+		}
 	}
 }

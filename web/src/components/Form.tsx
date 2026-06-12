@@ -262,6 +262,7 @@ export const Form = forwardRef<
 				<Group justify="center">
 					<Button
 						variant="filled"
+						c="black"
 						disabled={isLoading}
 						loading={isPending}
 						type="submit"
